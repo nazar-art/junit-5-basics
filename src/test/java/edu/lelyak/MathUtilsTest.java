@@ -1,6 +1,7 @@
 package edu.lelyak;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,5 +38,26 @@ class MathUtilsTest {
     void testDivideByZero() {
         assertThrows(ArithmeticException.class, () -> mathUtils.divide(5, 0),
                 "Divide by 0 should throw Arithmetic exception");
+    }
+
+    @Nested
+    class AddTest {
+        @Test
+        void testAddingTwoPositives() {
+            assertEquals(4, mathUtils.add(2, 2),
+                    "Add method should return the sum of two numbers");
+        }
+
+        @Test
+        void testAddingTwoNegatives() {
+            assertEquals( -2, mathUtils.add(-1, -1),
+                    "Add method should return the sum of two numbers");
+        }
+
+        @Test
+        void testAddingAPositiveAndANegative() {
+            assertEquals( 0, mathUtils.add(-1 , 1),
+                    "Add method should return the sum of two numbers");
+        }
     }
 }
