@@ -43,6 +43,7 @@ public class MathUtilsTest {
      * Tests
      */
     @Test
+    @Tag("Math")
     @DisplayName("Testing add method")
     void testAdd() {
         int expected = 2;
