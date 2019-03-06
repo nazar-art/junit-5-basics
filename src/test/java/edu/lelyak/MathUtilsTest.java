@@ -1,26 +1,34 @@
 package edu.lelyak;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Nazar_Lelyak.
  */
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MathUtilsTest {
 
     private MathUtils mathUtils;
+
+    @BeforeAll
+    /*static*/ void beforeAllInit() {
+        System.out.println("Init before all");
+    }
 
     @BeforeEach
     void setUp() {
         mathUtils = new MathUtils();
     }
 
+    @AfterEach
+    void tearDown() {
+        System.out.println("Cleaning up...");
+    }
+
     @Test
+    @DisplayName("Testing add method")
     void testAdd() {
         int expected = 2;
         int actual = mathUtils.add(1, 1);
@@ -69,5 +77,12 @@ class MathUtilsTest {
                 () -> assertEquals( 1, mathUtils.multiply(1, 1)),
                 () -> assertEquals( 6, mathUtils.multiply(2, 3))
         );
+    }
+
+    @Test
+    @Disabled
+    @DisplayName("TDD method. Should not run")
+    void testDisabled() {
+        fail("This test should be disabled");
     }
 }
